@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- <?php $this->load->view('admin/_partials/head.php') ?> -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+
+    <!-- Tambahkan referensi ke SweetAlert2 -->
+    <!-- Menghapus elemen <link> untuk SweetAlert2 -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10"> -->
+
+    <!-- Menambahkan elemen <script> untuk SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+</head>
+
+<body>
+    <main class="main">
+        <!-- <?php $this->load->view('admin/_partials/side_nav.php') ?> -->
+
+        <div class="content">
+            <h1>Feedback</h1>
+
+            {% for comment in comments %}
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <b>{{ comment.name }}</b> <small class="text-gray">{{ comment.email }}</small>
+                    </div>
+                    <div><small class="text-gray">19 Juli 2021</small></div>
+                </div>
+                <p>{{ comment.comment }}</p>
+                <a href="#" class="button button-danger button-small" role="button"
+                    onclick="deleteFeedback()">Delete</a>
+            </div>
+            {% endfor %}
+
+
+
+
+        </div>
+
+
+
+
+    </main>
+
+    <!-- Tambahkan script untuk SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        function deleteFeedback() {
+            // Menampilkan dialog konfirmasi
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Apakah Anda yakin ingin menghapus feedback ini?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Hapus',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Jika tombol Hapus diklik, tampilkan pesan Toast berhasil dihapus
+                    Swal.fire({
+                        title: 'Sukses',
+                        text: 'Feedback berhasil dihapus',
+                        icon: 'success',
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+                }
+            });
+        }
+    </script>
+    <div class="side-nav">
+        <div class="brand">
+            <h2>Admin Page</h2>
+        </div>
+        <nav>
+            <a href="#" onclick="goToOverview()">Overview</a>
+            <a href="#" onclick="goToPost()">Post</a>
+            <a href="#" onclick="goToFeedback()">Feedback</a>
+            <!-- <a href="#" onclick="goToSetting()">Setting</a> -->
+            <a href="#" onclick="goToLogout()">Logout</a>
+        </nav>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2023 - Unveiling the Depths of the Animal Kingdom</p>
+        </div>
+    </footer>
+
+    <script>
+        function goToOverview() {
+            window.location.href = "/";
+        }
+
+        function goToPost() {
+            window.location.href = "/post";
+        }
+
+        function goToFeedback() {
+            window.location.href = "/feedback";
+        }
+
+        // function goToSetting() {
+        //     window.location.href = "/setting";
+        // }
+
+        function goToLogout() {
+            window.location.href = "/logout";
+        }
+    </script>
+
+
+    <a href="/" class="button button-small back-button">Back</a>
+
+</body>
+
+</html>

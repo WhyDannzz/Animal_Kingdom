@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Animal Kingdom | Login Users</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Lato:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/signin.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+</head>
+
+<script>
+    function registrasi(event) {
+        event.preventDefault();
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+        if (password !== confirmPassword) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Password dan Konfirmasi Password tidak sesuai.'
+            });
+            return;
+        }
+
+        Swal.fire({
+            icon: 'question',
+            title: 'Konfirmasi',
+            text: 'Apakah Anda yakin ingin mendaftar?',
+            showCancelButton: true,
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch('/register', {
+                    method: 'POST',
+                    body: new FormData(event.target)
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Registrasi Berhasil',
+                                text: 'Akun Anda telah berhasil didaftarkan.'
+                            }).then(() => {
+                                // Mengarahkan pengguna ke halaman login
+                                window.location.href = "/signup";
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Registrasi Gagal',
+                                text: data.message
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Registrasi Gagal',
+                            text: 'Terjadi kesalahan saat melakukan registrasi.'
+                        });
+                    });
+            }
+        });
+    }
+
+    function sign_in() {
+        let email = $("#input-email").val();
+        let password = $("#input-password").val();
+
+        if (email === "") {
+            return alert("Email Belum Diisi!");
+        }
+
+
+        if (password === "") {
+            return alert("Password Belum Diisi!");
+        }
+
+
+        $.ajax({
+            type: "POST",
+            url: "/sign_in",
+            data: {
+                email_give: email,
+                password_give: password,
+            },
+            success: function (response) {
+                if (response["result"] === "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Login Berhasil!',
+                        text: 'Silahkan Klik Tombol Dibawah Ini!',
+                        willClose: () => {
+                            $.cookie("mytoken", response["token"], { path: "/"});
+                            console.log('testing');
+                            window.location.replace("/home2");
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Gagal!',
+                        text: 'Akun atau Password yang Anda masukkan salah!'
+                    });
+                }
+            },
+        });
+
+    }
+
+    function login_admin() {
+        window.location.href = "/admin";
+    }
+
+</script>
+
+
+<body class="body">
+    <div class="container col-sm-2">
+        <input type="checkbox" id="check">
+        <div class="login form">
+            <header class="login-text"><strong>LOGIN USERS</strong></header>
+            <div>
+                <input type="email" name="email" placeholder="Masukkan Email" id="input-email" required>
+                <input type="password" name="password" placeholder="Masukkan Password" id="input-password" required>
+                <input type="button" value="Login" class="btn btn-warning btn-login" onclick="sign_in()">
+            </div>
+            <div class="signup">
+                <span class="signup">Don't Have an Account?
+                    <label for="check">Sign Up!</label>
+                </span>
+            </div>
+            <div class="login-admin">
+                <input type="button" value="Login as Admin" class="btn btn-warning btn-login-admin"
+                    onclick="login_admin()">
+            </div>
+        </div>
+        <div class="registration form">
+            <header class="regist-text"><strong>REGISTRASI</strong></header>
+            <form action="/register" method="POST" id="registrationForm" onsubmit="registrasi(event)">
+                <input type="text" name="fullname" placeholder="Masukkan Nama Lengkap" id="input-fullname" required>
+                <input type="email" name="email" placeholder="Masukkan Email" required>
+                <input type="password" name="password" id="password" placeholder="Masukkan Password" id="input-password"
+                    required>
+                <input type="password" name="confirm_password" id="confirmPassword"
+                    placeholder="Masukkan Ulang Password" required>
+                <input type="submit" class="btn btn-warning" value="Daftar">
+            </form>
+            <div class="signup">
+                <span class="signup">Already Have an Account?
+                    <label for="check">Login!</label>
+                </span>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

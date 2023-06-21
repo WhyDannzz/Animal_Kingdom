@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+  <title>Document</title>
+
+
+  <style>
+    .MyComment {
+      border: 1px solid #000;
+      border-radius: 10px;
+      text-align: left;
+      margin: 0 auto;
+      margin-top: 20px;
+      padding: 20px;
+      width: 1090px;
+      /* max-width: 80%; */
+    }
+
+    footer.footer .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .aboutUs,
+    .contactUS {
+      margin-bottom: 20px;
+      margin-top: 20px;
+      /* padding-left: 60px; */
+      flex-basis: 40%;
+
+
+    }
+
+    @media (min-width: 576px) {
+
+      .aboutUs,
+      .contactUS {
+        flex-basis: calc(50% - 20px);
+      }
+    }
+
+    .aboutUs {
+      text-align: left;
+    }
+
+    .contactUS {
+      text-align: right;
+    }
+
+    .aboutUs h3,
+    .contactUS h3 {
+      font-size: 16px;
+    }
+
+    .aboutUs p,
+    .contactUS p {
+      font-size: 14px;
+      color: #000;
+    }
+
+
+    .whatsapp-icon {
+      color: green;
+      font-size: 20px;
+    }
+
+    .envelope-icon {
+      font-size: 20px;
+    }
+
+    .phone-icon {
+      font-size: 20px;
+    }
+
+
+    .footer-bottom {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #f8f8f8;
+      padding: 10px 0;
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      text-align: center;
+
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="MyComment col-md-4">
+          <h3>Kolom Komentar</h3>
+          <form>
+            <div class="form-group">
+              <label for="name">Nama</label>
+              <input type="text" class="form-control" id="name" placeholder="Masukkan nama Anda">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" class="form-control" id="email" placeholder="Masukkan email Anda">
+            </div>
+            <div class="form-group">
+              <label for="comment">Komentar</label>
+              <textarea class="form-control" id="comment" rows="3" placeholder="Tulis komentar Anda"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Kirim</button>
+          </form>
+        </div>
+        <div class="aboutUs col-md-4">
+          <h3>Tentang Kami</h3>
+          <p><a href="#" style="text-decoration: none; color: black;">About Us</a></p>
+        </div>
+        <div class="contactUS col-md-4">
+          <h3>Hubungi Kami</h3>
+          <p><a href="#" style="text-decoration: none;"><i class="fas fa-envelope envelope-icon"></i> <span
+                style="color: black;">info@example.com</span></a></p>
+          <p><a href="#" style="text-decoration: none;"><i class="fab fa-whatsapp whatsapp-icon"></i> <span
+                style="color: black;">+1234567890</span></a></p>
+          <p><a href="#" style="text-decoration: none;"><i class="fas fa-phone phone-icon"></i> <span
+                style="color: black;">012-3456789</span></a></p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>&copy; 2023 - Unveiling the Depths of the Animal Kingdom</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

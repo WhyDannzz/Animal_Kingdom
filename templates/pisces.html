@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Animal Kingdom | Pisces</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='pisces.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css"
+        integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"
+        integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+</head>
+<style>
+     .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .card {
+        width: 22rem;
+        background-color: whitesmoke;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card img {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-text {
+        margin-bottom: 1rem;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background-color: #F7971E;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+</style>
+
+<script>
+    var profilePic = document.querySelector('.profile-pic');
+    var fullName = document.querySelector('.fullname');
+
+    function searchArticles() {
+        var searchInput = document.getElementById('search-input').value;
+
+        console.log('Pencarian: ' + searchInput);
+    }
+
+    function logout() {
+        $.removeCookie('mytoken', { path: '/' });
+        Swal.fire({
+            icon: 'success',
+            title: 'Logout Berhasil!',
+            text: 'Silahkan Klik Tombol Dibawah Ini!',
+            willClose: () => {
+                console.log('testing');
+                window.location.replace("/signup");
+            }
+        });
+    }
+
+    function back() {
+        window.location.href = "/vertebrata";
+    }
+</script>
+
+<body>
+
+</body>
+<header>
+    <nav class="navbar fixed-top" style="background-color: #F7971E;">
+        <div class="container-fluid">
+            <div class="navbar-left">
+                <img src="../static/Logo White.png" class="logo">
+                <a href="/home2" class="animal-text"><strong>ANIMAL KINGDOM</strong></a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel" style="background-color: #F7971E;">
+                <div class="offcanvas-header" style="padding: 0; margin: 20px 10px 5px 15px;">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: white;"><strong>Selamat
+                            Datang!</strong></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body" style="padding-top: 5px;">
+                    <img src="{{ animal['Profile_Pic'] }}" class="profile-pic rounded-circle"
+                        style="width: 40px; height: 40px;" alt="Profile Picture">
+                    <a class="fullname"
+                        style="color: white; font-weight: bold; text-decoration: none; margin-left: 5px;">{{
+                        animal['Nama Lengkap'] }}</a>
+                    <ul class="navbar-nav justify-content-end">
+                        <li class="nav-item" style="margin-top: 10px;">
+                            <a class="nav-link active" href="/home2" style="font-size: 21px; color: white;">Home</a>
+                            <a class="nav-link active" style="font-size: 20px; color: white; padding: 0;">Search:</a>
+                            <div class="search-container d-flex" role="search">
+                                <input class="form-control me-2" type="search" id="search-input"
+                                    placeholder="Cari Artikel?">
+                                <button onclick="searchArticles()" class="btn btn-outline-light btn-seacrh"
+                                    type="submit">Search</button>
+                            </div>
+                            <button class="nav-link active" onclick="logout()"
+                                style="font-size: 20px; color: white; padding: 0; margin-top: 15px;">Log Out</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<!--End Navbar-->
+
+<!--Content-->
+
+<!--Grup Pisces-->
+<div class="content">
+    <div class="container">
+        <div class="pisces-group">
+            <div class="pisces-title">
+                <div class="pisces-text">
+                    <button class="btn btn-link" style="color: white; text-decoration: none;" onclick="back()">
+                        <h2><strong>Back</strong></h2>
+                    </button>
+                </div>
+            </div>
+            <div class="pisces-artikel" style="display: flex; overflow-x: auto;">
+                <div class="pisces-artikel" style="display: flex; overflow-x: auto;">
+                    <div class="card-container">
+                        {% for rec in rekomendasi %}
+                        <div class="card">
+                            <img src="{{ url_for('static', filename=rec.image1) }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{rec.Nama_Hewan}}</h5>
+                                <p class="card-text">{{ rec.Deskripsi_Fisik|truncate(80) }}</p>
+                                <a href="/Animal?query={{rec.Nama_Hewan}}" class="btn">Lihat Artikel</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End Contant-->
+
+<!--Footer-->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="aboutUs justify-content-center">
+                <h3><strong>Tentang Kami</strong></h3>
+                <p><a class="btn btn-about" href="aboutus" style="text-decoration: none; color: black;">About Us</a>
+                </p>
+            </div>
+            <div class="contactUS">
+                <h3 class="contactUSH3"><strong>Hubungi Kami</strong></h3>
+                <p><img src="../static/Gmail.png" alt="Gmail"> Animal_Kingdom@gmail.com</p>
+                <p><img src="../static/Whatsapp.png" alt="Whatsapp"> +62 895-8000-15974</p>
+                <p><img src="../static/Telepon.png" alt="Telepon"> +62 852-0731-4444</p>
+            </div>
+        </div>
+    </div>
+
+    <!--Copyright-->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p>&copy; 2023 - Unveiling the Depths of the Animal Kingdom</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--End Footer-->
+
+</body>
+
+</html>

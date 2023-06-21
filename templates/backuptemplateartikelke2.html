@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+
+
+
+<!-- script asli -->
+<!-- 
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+
+<!-- 
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+
+    <title>Search Article</title>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        .Logo-image {
+            width: 80px;
+            height: 80px;
+        }
+
+        .navbar.bg-body-tertiary {
+            /* background-color: rgb(37, 32, 32) !important; */
+            background-color: red !important;
+
+        }
+
+        .navbar-brand {
+            color: whitesmoke !important;
+        }
+
+        /* .navbar-toggler {
+    color: white !important;
+  } */
+
+        .navbar-nav .nav-link.dropdown-toggle {
+            color: whitesmoke !important;
+        }
+
+        /* .navbar {
+            background-color:  rgb(37, 32, 32) !important;
+            position: fixed;
+        }
+
+        .navbar-brand {
+            color: white !important;
+        } */
+
+        /* .navbar-brand img {
+            width: 80px;
+            height: 80px;
+        } */
+        /* .navbar {
+            background-color: rgb(37, 32, 32) !important;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .navbar-brand {
+            color: white !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            width: 80px;
+            margin-right: 10px;
+        }
+
+        .dropdown-menu {
+            margin: 10px;
+
+        } */
+
+        /* .search-form {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            margin: 0 10px;
+        } */
+
+        /* .search-input {
+            width: 30%;
+            margin-left: 10px;
+        }
+
+        .profile-button {
+            display: inline-block;
+        }
+
+        .profile-button__button {
+            background-color: #f2f2f2;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .profile-button__name,
+        .profile-button__email {
+            display: block;
+            font-size: 14px;
+        }
+
+
+
+ */
+
+        .related-pages {
+            margin-top: 50px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        .related-pages h3 {
+            margin-bottom: 15px;
+            font-size: 32px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card {
+            margin: 10px;
+            width: 30rem;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            max-width: 70%;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 50px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+        }
+
+        p {
+            text-align: justify;
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .MyComment {
+            border: 1px solid #000;
+            border-radius: 10px;
+            text-align: left;
+            margin: 0 auto;
+            margin-top: 20px;
+            padding: 20px;
+            width: 1090px;
+        }
+
+        footer.footer .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .contactUS {
+            justify-content: flex-end;
+        }
+
+        .aboutUs {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            flex-basis: 40%;
+        }
+
+        .contactUS {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            flex-basis: 40%;
+        }
+
+        @media (min-width: 576px) {
+
+            .aboutUs,
+            .contactUS {
+                flex-basis: calc(50% - 20px);
+            }
+        }
+
+        .aboutUs {
+            text-align: left;
+        }
+
+        .contactUS {
+            text-align: right;
+
+        }
+
+        .aboutUs h3 {
+            text-align: left;
+            font-size: 16px;
+            color: white;
+
+        }
+
+        .contactUS h3 {
+            text-align: right;
+            font-size: 16px;
+            color: white;
+        }
+
+        .toContact {
+            text-align: right;
+            font-weight: normal;
+            font-size: 14px;
+            color: white;
+        }
+
+
+
+        .toAbout {
+            text-align: left;
+            font-weight: normal;
+            font-size: 14px;
+            color: white;
+        }
+
+
+        /* .aboutUs p {
+            font-size: 14px;
+            color: #000;
+
+        } */
+
+        /* .contactUS p {
+            font-size: 14px;
+            color: black;
+            text-align: right;
+        } */
+
+        .whatsapp-icon {
+            color: green;
+            font-size: 20px;
+            text-align: right;
+        }
+
+        .envelope-icon {
+            font-size: 20px;
+            text-align: right;
+        }
+
+        .phone-icon {
+            font-size: 20px;
+            text-align: right;
+        }
+
+        .footer-bottom {
+            /* position: sticky; */
+            margin-top: 40px;
+            left: 0;
+            bottom: auto;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(37, 32, 32);
+            padding: 10px 0;
+        }
+
+        .footer-bottom p {
+            text-align: center;
+            font-size: 12px;
+            margin: 0;
+            color: whitesmoke;
+
+        }
+    </style>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function submitComment() {
+            // Mengambil data dari input form
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var comment = $('#comment').val();
+
+            // Mengirim data ke endpoint submit-comment menggunakan AJAX
+            $.ajax({
+                url: '/submit-comment',
+                type: 'POST',
+                data: {
+                    name: name,
+                    email: email,
+                    comment: comment
+                },
+                success: function (response) {
+                    // Menampilkan SweetAlert sukses
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Komentar berhasil dikirim!',
+                        text: response
+                    });
+
+                    // Mengosongkan input form setelah mengirim
+                    $('#name').val('');
+                    $('#email').val('');
+                    $('#comment').val('');
+                },
+                error: function (error) {
+                    // Menampilkan SweetAlert error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Terjadi kesalahan saat mengirim komentar.'
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            // Mencegah pengiriman form pencarian secara default
+            $('#searchForm').submit(function (event) {
+                event.preventDefault();
+                // Memanggil fungsi pencarian
+                performSearch();
+            });
+
+            // Mengeksekusi pencarian artikel
+            function performSearch() {
+                // Mengambil data dari input form
+                var query = $('input[name="query"]').val();
+                // Mengarahkan pengguna ke halaman pencarian dengan query sebagai parameter GET
+                window.location.href = '/templateArtikel?query=' + query;
+            }
+
+            // Mencegah pengiriman form komentar secara default
+            $('#commentForm').submit(function (event) {
+                event.preventDefault();
+                // Memanggil fungsi mengirim komentar
+                submitComment();
+            });
+        });
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar bg-body-tertiary">
+        <div class="containerNavbar">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='Logo/Logo White.png') }}" class="Logo-image" alt="">Animal
+                Kingdom
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+
+
+
+            </div>
+
+        </div>
+
+        
+
+
+    </nav>
+
+<!-- <nav class="navbar navbar-expand bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="{{ url_for('static', filename='Logo/Logo White.png') }}" class="Logo-image" alt=""
+                        class="d-inline-block align-text-top">
+                    Animal Kingdom
+                </a>
+            </div>
+        </nav> -->
+
+
+    <h1>Search Article</h1>
+    <form id="searchForm" action="/templateArtikel" method="GET">
+        <div class="form-group">
+            <input type="text" name="query" class="form-control" placeholder="Search by title">
+        </div>
+        <button id="searchButton" type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <h2>Search Results:</h2>
+    {% if articles %}
+    <ul>
+        {% for article in articles %}
+        <li>
+            <h3>{{ article.title }}</h3>
+            <img src="{{ url_for('static', filename=article.image1) }}" alt="Gambar 1" width="100">
+            <p>{{ article.sumberfoto1 }}</p>
+            <p>{{ article.klasifikasi }}</p>
+            <p>{{ article.ciri }}</p>
+            <p>{{ article.habitat }}</p>
+            <img src="{{ url_for('static', filename=article.image2) }}" alt="Gambar 2" width="100">
+            <p>{{ article.sumberfoto2 }}</p>
+            <p>{{ article.carahidup }}</p>
+            <p>{{ article.reproduksi }}</p>
+            <p>{{ article.fakta }}</p>
+            <p>{{ article.referensi }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+
+    <div class="related-pages">
+        <h3 class="related-articles">Halaman Terkait:</h3>
+        <div class="card-container">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the
+                        bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the
+                        bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="MyComment col-md-4">
+                    <h3>Kolom Komentar</h3>
+                    <form id="commentForm">
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" class="form-control" id="name" placeholder="Masukkan nama Anda">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Masukkan email Anda">
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Komentar</label>
+                            <textarea class="form-control" id="comment" rows="3"
+                                placeholder="Tulis komentar Anda"></textarea>
+                        </div>
+                        <button id="submitComment" class="btn btn-primary" style="margin-top: 10px;">Kirim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="aboutUs col-md-4">
+                        <h3>Tentang Kami</h3>
+                        <h6 class="toAbout"><a href="#" style="text-decoration: none; color: whitesmoke;">About
+                                Us</a>
+                        </h6>
+                    </div>
+                    <div class="contactUS col-md-4">
+                        <h3 class="contactUSH3">Hubungi Kami</h3>
+                        <h6 class="toContact"><a href="#" style="text-decoration: none;"><i
+                                    class="fas fa-envelope envelope-icon"></i>
+                                <span style="color: whitesmoke;">info@example.com</span></a></h6>
+                        <h6 class="toContact"><a href="#" style="text-decoration: none;"><i
+                                    class="fab fa-whatsapp whatsapp-icon"></i>
+                                <span style="color: whitesmoke;">+1234567890</span></a></h6>
+                        <h6 class="toContact"><a href="#" style="text-decoration: none;"><i
+                                    class="fas fa-phone phone-icon"></i> <span
+                                    style="color: whitesmoke;">012-3456789</span></a></h6>
+                    </div>
+                    <div class="col-md-12">
+                        <p>&copy; 2023 - Unveiling the Depths of the Animal Kingdom</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
+
+
+
+
+backup ke 2
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <title>Search Article</title>
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        .Logo-image {
+            width: 80px;
+            height: 80px;
+        }
+
+
+        .navbar-expand.bg-body-tertiary {
+            background-color: rgb(37, 32, 32) !important;
+        }
+
+        .navbar-brand {
+            color: whitesmoke !important;
+        }
+
+        /* .navbar-toggler {
+    color: white !important;
+  } */
+
+        .navbar-nav .nav-link.dropdown-toggle {
+            color: whitesmoke !important;
+        }
+
+        /* .navbar {
+            background-color:  rgb(37, 32, 32) !important;
+            position: fixed;
+        }
+
+        .navbar-brand {
+            color: white !important;
+        } */
+
+        /* .navbar-brand img {
+            width: 80px;
+            height: 80px;
+        } */
+        /* .navbar {
+            background-color: rgb(37, 32, 32) !important;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .navbar-brand {
+            color: white !important;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            width: 80px;
+            margin-right: 10px;
+        }
+
+        .dropdown-menu {
+            margin: 10px;
+
+        } */
+
+        /* .search-form {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            margin: 0 10px;
+        } */
+
+        /* .search-input {
+            width: 30%;
+            margin-left: 10px;
+        }
+
+        .profile-button {
+            display: inline-block;
+        }
+
+        .profile-button__button {
+            background-color: #f2f2f2;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .profile-button__name,
+        .profile-button__email {
+            display: block;
+            font-size: 14px;
+        }
+
+
+
+ */
+
+        .related-pages {
+            margin-top: 50px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+
+        .related-pages h3 {
+            margin-bottom: 15px;
+            font-size: 32px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card {
+            margin: 10px;
+            width: 30rem;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            list-style-type: none;
+            padding: 0;
+            max-width: 70%;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 50px;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+        }
+
+        p {
+            text-align: justify;
+            font-size: 24px;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .MyComment {
+            border: 1px solid #000;
+            border-radius: 10px;
+            text-align: left;
+            margin: 0 auto;
+            margin-top: 20px;
+            padding: 20px;
+            width: 1090px;
+        }
+
+        footer.footer .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .contactUS {
+            justify-content: flex-end;
+        }
+
+        .aboutUs {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            flex-basis: 40%;
+        }
+
+        .contactUS {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            flex-basis: 40%;
+        }
+
+        @media (min-width: 576px) {
+
+            .aboutUs,
+            .contactUS {
+                flex-basis: calc(50% - 20px);
+            }
+        }
+
+        .aboutUs {
+            text-align: left;
+        }
+
+        .contactUS {
+            text-align: right;
+
+        }
+
+        .aboutUs h3 {
+            text-align: left;
+            font-size: 16px;
+            color: white;
+
+        }
+
+        .contactUS h3 {
+            text-align: right;
+            font-size: 16px;
+            color: white;
+        }
+
+        .toContact {
+            text-align: right;
+            font-weight: normal;
+            font-size: 14px;
+            color: white;
+        }
+
+
+
+        .toAbout {
+            text-align: left;
+            font-weight: normal;
+            font-size: 14px;
+            color: white;
+        }
+
+
+        /* .aboutUs p {
+            font-size: 14px;
+            color: #000;
+
+        } */
+
+        /* .contactUS p {
+            font-size: 14px;
+            color: black;
+            text-align: right;
+        } */
+
+        .whatsapp-icon {
+            color: green;
+            font-size: 20px;
+            text-align: right;
+        }
+
+        .envelope-icon {
+            font-size: 20px;
+            text-align: right;
+        }
+
+        .phone-icon {
+            font-size: 20px;
+            text-align: right;
+        }
+
+        .footer-bottom {
+            /* position: sticky; */
+            margin-top: 40px;
+            left: 0;
+            bottom: auto;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(37, 32, 32);
+            padding: 10px 0;
+        }
+
+        .footer-bottom p {
+            text-align: center;
+            font-size: 12px;
+            margin: 0;
+            color: whitesmoke;
+
+        }
+    </style>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        function submitComment() {
+            // Mengambil data dari input form
+            var name = $('#name').val();
+            var email = $('#email').val();
+            var comment = $('#comment').val();
+
+            // Mengirim data ke endpoint submit-comment menggunakan AJAX
+            $.ajax({
+                url: '/submit-comment',
+                type: 'POST',
+                data: {
+                    name: name,
+                    email: email,
+                    comment: comment
+                },
+                success: function (response) {
+                    // Menampilkan SweetAlert sukses
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Komentar berhasil dikirim!',
+                        text: response
+                    });
+
+                    // Mengosongkan input form setelah mengirim
+                    $('#name').val('');
+                    $('#email').val('');
+                    $('#comment').val('');
+                },
+                error: function (error) {
+                    // Menampilkan SweetAlert error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Terjadi kesalahan saat mengirim komentar.'
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            // Mencegah pengiriman form pencarian secara default
+            $('#searchForm').submit(function (event) {
+                event.preventDefault();
+                // Memanggil fungsi pencarian
+                performSearch();
+            });
+
+            // Mengeksekusi pencarian artikel
+            function performSearch() {
+                // Mengambil data dari input form
+                var query = $('input[name="query"]').val();
+                // Mengarahkan pengguna ke halaman pencarian dengan query sebagai parameter GET
+                window.location.href = '/templateArtikel?query=' + query;
+            }
+
+            // Mencegah pengiriman form komentar secara default
+            $('#commentForm').submit(function (event) {
+                event.preventDefault();
+                // Memanggil fungsi mengirim komentar
+                submitComment();
+            });
+        });
+    </script>
+
+</head>
+
+<body>  
+    <nav class="navbar navbar-expand bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='Logo/Logo White.png') }}" class="Logo-image" alt=""
+                    class="d-inline-block align-text-top">
+                Animal Kingdom
+            </a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+
+
+
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <h1>Search Article</h1>
+    <form id="searchForm" action="/templateArtikel" method="GET">
+        <div class="form-group">
+            <input type="text" name="query" class="form-control" placeholder="Search by title">
+        </div>
+        <button id="searchButton" type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <h2>Search Results:</h2>
+    {% if articles %}
+    <ul>
+        {% for article in articles %}
+        <li>
+            <h3>{{ article.title }}</h3>
+            <img src="{{ url_for('static', filename=article.image1) }}" alt="Gambar 1" width="100">
+            <p>{{ article.sumberfoto1 }}</p>
+            <p>{{ article.klasifikasi }}</p>
+            <p>{{ article.ciri }}</p>
+            <p>{{ article.habitat }}</p>
+            <img src="{{ url_for('static', filename=article.image2) }}" alt="Gambar 2" width="100">
+            <p>{{ article.sumberfoto2 }}</p>
+            <p>{{ article.carahidup }}</p>
+            <p>{{ article.reproduksi }}</p>
+            <p>{{ article.fakta }}</p>
+            <p>{{ article.referensi }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No results found.</p>
+    {% endif %}
+
+    <div class="related-pages">
+        <h3 class="related-articles">Halaman Terkait:</h3>
+        <div class="card-container">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the
+                        bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the
+                        bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="MyComment col-md-4">
+                    <h3>Kolom Komentar</h3>
+                    <form id="commentForm">
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" class="form-control" id="name" placeholder="Masukkan nama Anda">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Masukkan email Anda">
+                        </div>
+                        <div class="form-group">
+                            <label for="comment">Komentar</label>
+                            <textarea class="form-control" id="comment" rows="3"
+                                placeholder="Tulis komentar Anda"></textarea>
+                        </div>
+                        <button id="submitComment" class="btn btn-primary" style="margin-top: 10px;">Kirim</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="aboutUs col-md-4">
+                        <h3>Tentang Kami</h3>
+                        <h6 class="toAbout"><a href="#" style="text-decoration: none; color: whitesmoke;">About Us</a>
+                        </h6>
+                    </div>
+                    <div class="contactUS col-md-4">
+                        <h3 class="contactUSH3">Hubungi Kami</h3>
+                        <h6 class="toContact"><a href="#" style="text-decoration: none;"><i
+                                    class="fas fa-envelope envelope-icon"></i>
+                                <span style="color: whitesmoke;">info@example.com</span></a></h6>
+                        <h6 class="toContact"><a href="#" style="text-decoration: none;"><i
+                                    class="fab fa-whatsapp whatsapp-icon"></i>
+                                <span style="color: whitesmoke;">+1234567890</span></a></h6>
+                        <h6 class="toContact"><a href="#" style="text-decoration: none;"><i
+                                    class="fas fa-phone phone-icon"></i> <span
+                                    style="color: whitesmoke;">012-3456789</span></a></h6>
+                    </div>
+                    <div class="col-md-12">
+                        <p>&copy; 2023 - Unveiling the Depths of the Animal Kingdom</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

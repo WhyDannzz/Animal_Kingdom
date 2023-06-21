@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Halaman Bantuan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .table-container {
+        max-width: 100%;
+        overflow-x: auto;
+        margin-top: 50px;
+    }
+
+    .table-container table {
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .table-container th,
+    .table-container td {
+        text-align: center;
+        vertical-align: top;
+        word-wrap: break-word;
+    }
+
+
+    .table-container .pesan {
+        white-space: normal;
+        text-align: justify;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .action-buttons button {
+        width: 100px;
+
+
+        /* Ubah lebar tombol sesuai kebutuhan */
+    }
+
+    .action-buttons button+button {
+        margin-left: 10px;
+        /* Tambahkan jarak antara tombol */
+    }
+
+
+
+
+    .navbar-brand img {
+        max-width: 100px;
+        height: auto;
+        padding-left: 40px;
+    }
+
+    .brand-text {
+        color: white;
+        font-weight: bold;
+    }
+
+
+    .bg-teal {
+        background-color: teal;
+    }
+
+    .btn-light {
+        color: white;
+        background-color: white;
+    }
+
+    #search-input {
+        border-radius: 10px;
+        width: 30%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .offcanvas-title {
+        color: white;
+        padding: 10px;
+        font-family: sans;
+        font-weight: bold;
+
+
+    }
+
+    .offcanvas-header {
+        background-color: teal;
+    }
+
+    .offcanvas-body {
+        background-color: teal;
+    }
+
+    .btn-white {
+        background-color: white;
+    }
+
+
+    .nav-item a.nav-link {
+        font-family: sans;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        padding-top: 15px;
+    }
+
+
+    .button {
+        background-color: #e7e7e7;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        color: black;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1rem;
+        font-family: sans-serif;
+    }
+</style>
+
+
+<script>
+    function goToOverview() {
+        window.location.href = "/overview";
+    }
+
+    function goToPost() {
+        window.location.href = "/post";
+    }
+
+    function goToRequest() {
+        window.location.href = "/Request";
+    }
+
+    function goToComment_admin() {
+            window.location.href = "/Comment_admin";
+        }
+
+    function goToLogout() {
+        window.location.href = "/logout";
+    }
+
+
+    function searchInTable() {
+        var input, filter, table, tr, td, i, j, txtValue;
+        input = document.getElementById("search-input");
+        filter = input.value.toUpperCase();
+        table = document.getElementsByTagName("table")[0];
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            var found = false;
+            for (j = 0; j < tr[i].cells.length; j++) {
+                td = tr[i].cells[j];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        found = true;
+                        break;
+                    }
+                }
+            }
+            if (found) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+</script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light bg-teal fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='Logo/Logo White.png') }}" alt="Logo White.png">
+                <span class="brand-text">Animal Kingdom</span>
+            </a>
+
+            <!-- <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onkeyup="searchByTitle()">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+            <input id="search-input" type="text" placeholder="Search" onkeyup="searchInTable()" />
+
+
+            <button class="navbar-toggler btn-light" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h2 class="offcanvas-title" id="offcanvasNavbarLabel">Admin Page:</h2>
+                    <button type="button" class="btn-close text-reset btn-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close">
+                    </button>
+                </div>
+
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#" onclick="goToOverview()"
+                                style="color: white;">Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="goToPost()" style="color: white;">Post</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" onclick="goToRequest()"
+                                style="color: black;">Request</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="goToComment_admin()"  style="color: white;">Comment</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="goToLogout()" style="color: white;">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+    <div class="table-container">
+        <h1>Halaman Bantuan</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Judul Artikel</th>
+                    <th>Pesan</th>
+                    <th>Status</th>
+                    <th>Tindakan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in requests %}
+                {% set status=request.status %}
+                <tr>
+                    <td>{{ request.name }}</td>
+                    <td>{{ request.email }}</td>
+                    <td>{{ request.article_title }}</td>
+                    <td class="pesan">{{ request.message }}</td>
+                    <td id="status-{{ request._id }}">{{ request.status }}</td>
+                    <td>
+                        {% if status== 'Pending' %}
+                        <div class="action-buttons">
+                            <button onclick="confirmApproveRequest('{{ request._id }}')"
+                                class="btn btn-success">Approve</button>
+                            <button onclick="confirmRejectRequest('{{ request._id }}')"
+                                class="btn btn-danger">Reject</button>
+                        </div>
+
+                        {% else %}
+                        <div class="action-buttons">
+                            <button onclick="confirmDeleteRequest('{{ request._id }}')"
+                                class="btn btn-danger">Delete</button>
+                        </div> {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function confirmApproveRequest(requestId) {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Anda yakin ingin menyetujui permintaan ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Kirim permintaan ke server untuk menyetujui
+                    fetch('/approve', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ requestId: requestId })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Ubah status permintaan menjadi "Disetujui"
+                                document.getElementById('status-' + requestId).textContent = 'Disetujui';
+
+                                // Tampilkan pesan sukses
+                                Swal.fire('Permintaan disetujui!', 'Permintaan dengan ID ' + requestId + ' telah disetujui.', 'success')
+                                    .then(() => {
+                                        location.reload(); // Refresh halaman
+                                    });
+                            } else {
+                                // Tampilkan pesan gagal
+                                Swal.fire('Error', 'Gagal menyetujui permintaan.', 'error');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            Swal.fire('Error', 'Terjadi kesalahan pada server.', 'error');
+                        });
+                }
+            });
+        }
+
+        function confirmRejectRequest(requestId) {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Anda yakin ingin menolak permintaan ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Kirim permintaan ke server untuk menolak
+                    fetch('/reject', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ requestId: requestId })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Ubah status permintaan menjadi "Ditolak"
+                                document.getElementById('status-' + requestId).textContent = 'Ditolak';
+
+                                // Tampilkan pesan sukses
+                                Swal.fire('Permintaan ditolak!', 'Permintaan dengan ID ' + requestId + ' telah ditolak.', 'success')
+                                    .then(() => {
+                                        location.reload(); // Refresh halaman
+                                    });
+                            } else {
+                                // Tampilkan pesan gagal
+                                Swal.fire('Error', 'Gagal menolak permintaan.', 'error');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            Swal.fire('Error', 'Terjadi kesalahan pada server.', 'error');
+                        });
+                }
+            });
+        }
+
+        function confirmDeleteRequest(requestId) {
+            Swal.fire({
+                title: 'Konfirmasi',
+                text: 'Anda yakin ingin menghapus permintaan ini?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Kirim permintaan ke server untuk menghapus
+                    fetch('/deleteRequest', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ requestId: requestId })
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                // Hapus baris permintaan dari tampilan
+                                const row = document.getElementById('status-' + requestId).parentNode;
+                                row.parentNode.removeChild(row);
+
+                                // Tampilkan pesan sukses
+                                Swal.fire('Permintaan dihapus!', 'Permintaan dengan ID ' + requestId + ' telah dihapus.', 'success');
+                            } else {
+                                // Tampilkan pesan gagal
+                                Swal.fire('Error', 'Gagal menghapus permintaan.', 'error');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            Swal.fire('Error', 'Terjadi kesalahan pada server.', 'error');
+                        });
+                }
+            });
+        }
+
+    </script>
+</body>
+
+</html>

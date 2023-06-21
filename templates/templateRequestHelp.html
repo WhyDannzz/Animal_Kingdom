@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Halaman Bantuan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url("/static/BG/BGhelp2.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            background-attachment: fixed;
+        }
+
+
+
+
+        .navbar {
+            background-color: #69611D !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 70px;
+        }
+
+
+        .container-fluid {
+            padding-left: 40px;
+            padding-right: 45px;
+            background-color: #69611D;
+
+            padding-bottom: 10px;
+        }
+
+        .navbar-nav {
+            margin: auto;
+            margin-left: 40px;
+        }
+
+        .navbar-brand img {
+            width: 50px;
+            height: 50px;
+            margin: 0;
+        }
+
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+        }
+
+
+
+        .brand-text {
+            color: white;
+            font-weight: bold;
+            margin-left: -10px;
+            font-size: 22px;
+        }
+
+
+
+        .search-form .btn-primary {
+            background-color: white;
+            border-color: white;
+        }
+
+        .search-form .btn-primary:hover {
+            background-color: whitesmoke;
+            border-color: whitesmoke;
+        }
+
+        .search-form .bi-search {
+            color: whitesmoke;
+        }
+
+
+
+        .nav-item.dropdown .nav-link {
+            color: white;
+            font-weight: bold;
+            font-size: 22px;
+        }
+
+        .dropdown-menu {
+            background-color: white;
+            color: black;
+            font-weight: bold;
+        }
+
+        .dropdown-menu .dropdown-item {
+            color: black;
+        }
+
+        .dropdown-menu .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+
+
+
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #ccc;
+            justify-content: center;
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+            margin-top: 20px;
+
+        }
+
+        /* .form-container h1 {
+            text-align: center;
+            
+        } */
+
+        .form-container form {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .form-container .form-group label {
+            font-weight: bold;
+        }
+
+        .form-container .form-group input,
+        .form-container .form-group textarea {
+            border: 1px solid #ccc;
+        }
+
+
+        .btn-primary {
+            background-color: #69611D !important;
+            float: right;
+        }
+
+        h1.kirim-permintaan {
+            text-align: center;
+            color: #69611D;
+            background-position: center;
+            background-size: cover;
+            padding: 20px;
+            width: 100%;
+            background-repeat: no-repeat;
+
+
+        }
+
+
+
+        footer.footer .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .contactUS {
+            justify-content: flex-end;
+        }
+
+        .aboutUs {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            flex-basis: 40%;
+        }
+
+        .contactUS {
+            margin-bottom: 20px;
+            margin-top: 20px;
+            flex-basis: 40%;
+        }
+
+        @media (min-width: 576px) {
+
+            .aboutUs,
+            .contactUS {
+                flex-basis: calc(50% - 20px);
+            }
+        }
+
+        .aboutUs {
+            text-align: left;
+        }
+
+        .contactUS {
+            text-align: right;
+
+        }
+
+        .aboutUs h3 {
+            text-align: left;
+            font-size: 16px;
+            color: white;
+
+        }
+
+        .contactUS h3 {
+            text-align: right;
+            font-size: 16px;
+            color: white;
+        }
+
+        .toContact {
+            text-align: right;
+            font-weight: normal;
+            font-size: 14px;
+            color: white;
+        }
+
+
+
+        .toAbout {
+            text-align: left;
+            font-weight: normal;
+            font-size: 14px;
+            color: white;
+        }
+
+
+        /* .aboutUs p {
+            font-size: 14px;
+            color: #000;
+
+        } */
+
+        /* .contactUS p {
+            font-size: 14px;
+            color: black;
+            text-align: right;
+        } */
+
+        .whatsapp-icon {
+            color: green;
+            font-size: 20px;
+            text-align: right;
+        }
+
+        .envelope-icon {
+            font-size: 20px;
+            text-align: right;
+        }
+
+        .phone-icon {
+            font-size: 20px;
+            text-align: right;
+        }
+
+        .footer-bottom {
+            /* position: sticky; */
+            margin-top: 40px;
+            left: 0;
+            bottom: auto;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(37, 32, 32);
+            padding: 10px 0;
+            text-align: center;
+
+        }
+
+
+        .footer-bottom p {
+            font-size: 12px;
+            margin: 0;
+            color: whitesmoke;
+
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="/home2">
+                <img src="{{ url_for('static', filename='Logo/Logo White.png') }}" alt="" width="30" height="24"
+                    class="d-inline-block align-text-top"> <span class="brand-text">
+                    Animal Kingdom</span>
+            </a>
+
+
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Avertebrata
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                            <li><a class="dropdown-item" href="/blogpisces">Pisces</a></li>
+                            <li><a class="dropdown-item" href="/blogamfibi">Amfibi</a></li>
+                            <li><a class="dropdown-item" href="/blogreptil">Reptilia</a></li>
+                            <li><a class="dropdown-item" href="/blogaves">Aves</a></li>
+                            <li><a class="dropdown-item" href="/blogmamalia">Mamalia</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Invertebrata
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                            <li><a class="dropdown-item" href="/blog6">Porifera</a></li>
+                            <li><a class="dropdown-item" href="/blog7">Platyhelminthes</a></li>
+                            <li><a class="dropdown-item" href="/blog8">Nemathelminthes</a></li>
+                            <li><a class="dropdown-item" href="/blog9">Colenterata</a></li>
+                            <li><a class="dropdown-item" href="/blog10">Annelida</a></li>
+                            <li><a class="dropdown-item" href="/blog11">Mollusca</a></li>
+                            <li><a class="dropdown-item" href="/blog12">Echinodermata</a></li>
+                            <li><a class="dropdown-item" href="/blog13">Arthropoda</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+
+
+                <form id="searchForm" action="/Animal" method="GET" class="search-form">
+                    <div class="input-group">
+                        <input type="text" name="query" class="form-control search-input" placeholder="Search">
+                        <button id="searchButton" type="submit" class="btn btn-primary">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+    <div class="form-container">
+        <h1 class="kirim-permintaan" style="background-image: url(../static/BG/BGkirimPermintaan2.png);">Kirim
+            Permintaan
+        </h1>
+
+        <!-- <h1><img src="../static/BG/BGkirimPermintaan.png" alt="Kirim Permintaan" id="gambar"></h1> -->
+        <form id="help-form" action="/submit-help" method="POST" onsubmit="return confirmSubmit()"
+            style="max-width: 1000px;">
+            <div class="form-group">
+                <label for="name">Nama:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Masukkan nama Anda" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan email Anda"
+                    required>
+            </div>
+            <div class="form-group">
+                <label for="article-title">Judul Artikel:</label>
+                <input type="text" class="form-control" id="article-title" name="article_title"
+                    placeholder="Masukkan judul artikel terkait" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Apa yang dapat kami bantu?</label>
+                <textarea class="form-control" id="message" name="message" rows="5"
+                    placeholder="Silakan ketik ketik permintaan Anda" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Kirim</button>
+            <a href="/Animal" style="float: right; margin-right: 10px;" class="btn btn-secondary">Back</a>
+
+        </form>
+    </div>
+
+    <script>
+        function confirmSubmit() {
+            if (validateForm()) {
+                Swal.fire({
+                    title: "Konfirmasi",
+                    text: "Anda yakin ingin mengirim formulir?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Kirim",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        submitForm();
+                    }
+                });
+            }
+            return false;
+        }
+
+        function validateForm() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const articleTitle = document.getElementById("article-title").value;
+            const message = document.getElementById("message").value;
+
+            if (!name || !email || !articleTitle || !message) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Harap isi semua bidang yang diperlukan",
+                    icon: "error",
+                    confirmButtonText: "OK",
+                });
+                return false;
+            }
+
+            return true;
+        }
+
+        function submitForm() {
+            document.getElementById("help-form").submit();
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const success = urlParams.get('success');
+        const isFormSubmitted = window.performance &&
+            window.performance.navigation &&
+            window.performance.navigation.type === window.performance.navigation.TYPE_RELOAD;
+
+        if (success && !isFormSubmitted) {
+            Swal.fire({
+                title: 'Sukses',
+                text: 'Permintaan Anda berhasil Terkirim!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                // Redirect to the page without the success parameter
+                const url = new URL(window.location.href);
+                url.searchParams.delete('success');
+                window.location.href = url.href;
+            });
+        }
+    </script>
+
+
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="aboutUs col-md-4">
+                        <h3>Tentang Kami</h3>
+                        <h6 class="toAbout"><a href="#" style="text-decoration: none; color: whitesmoke;">About Us</a>
+                        </h6>
+                    </div>
+                    <div class="contactUS col-md-4">
+                        <h3 class="contactUSH3">Hubungi Kami</h3>
+                        <h6 class="toContact"><a href="#" style="text-decoration: none;"><i
+                                    class="fas fa-envelope envelope-icon"></i>
+                                <span style="color: whitesmoke;">stefanuschai12@gmail.com</span></a></h6>
+                        <h6 class="toContact"><a href="#" style="text-decoration: none;"><i
+                                    class="fab fa-whatsapp whatsapp-icon"></i>
+                                <span style="color: whitesmoke;">0895800015974</span></a></h6>
+                        <h6 class="toContact"><a href="/help" style="text-decoration: none;"><span
+                                    style="color: whitesmoke;">Bantuan</span></a></h6>
+                    </div>
+                    <div class="col-md-12">
+                        <p>&copy; 2023 - Unveiling the Depths of the Animal Kingdom</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,206 @@
+/* Umum */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+
+    background-image: url('../static/Background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-attachment: fixed;
+}
+
+/* Navbar Atas */
+
+.container-nav {
+  background-color: #F7971E;
+  width: 100%;
+
+  position: relative;
+  
+}
+
+.logo {
+  height: 35px;
+  width: 35px;
+
+  margin: 3px 0 3px 40px;
+}
+
+.navbar {
+  justify-content: space-between;
+  align-items: center;
+  height: 53px;
+}
+
+.animal-text {
+  color: white;
+  margin-left: 5px;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.login {
+  color: white;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+
+.fa-user {
+  margin-right: 5px;
+}
+
+/* Content */
+
+.image-animal-kingdom {
+  width: 50%;
+  height: 50%;
+}
+
+.body-content {
+  width: 100%;
+  margin-top: 130px;
+  margin-left: auto;
+  margin-right: auto;
+
+  font-size: 30px;
+  font-weight: bold;
+
+  text-align: center;
+}
+
+.deskripsi {
+  font-weight: normal;
+  font-size: 20px;
+  display: flex;
+  margin: 30px 40px;
+  text-align: center;
+  line-height: 30px;
+}
+
+.silahkan {
+  margin-top: 30px;
+  text-align: center;
+
+  font-weight: bold;
+}
+
+.btn-lg {
+    background-color: #F7971E;
+  width: 250px;
+  height: 90px;
+  border-radius: 30px;
+  color: black;
+
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
+.btn-lg:hover {
+  background-color: #F7971E;
+  color: white;
+  border-color: white;
+  cursor: pointer;
+}
+
+.button {
+  text-align: center;
+  justify-content: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.atau {
+  font-size: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Navbar Bawah */
+
+footer {
+  margin-top: 70px;
+  background-color: #F7971E;
+}
+
+footer.footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.aboutUs {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 10px;
+
+  flex-basis: 40%;
+  text-align: left;
+}
+
+.aboutUs h3 {
+  text-align: left;
+  font-size: 20px;
+}
+
+.aboutUs p {
+  font-size: 15px;
+
+  color: #000;
+}
+
+.btn-about {
+    background-color: white;
+}
+
+.btn-about:hover {
+    background-color: rgb(255,210,0);
+  border-color: white;
+}
+
+.contactUS {
+  text-align: right;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  flex-basis: 21%;
+}
+
+.contactUS h3 {
+  text-align: left;
+  font-size: 20px;
+}
+
+.contactUS p {
+  font-size: 14px;
+  color: #000;
+  text-align: left;
+}
+
+.contactUS img {
+  width: 20px;
+  height: auto;
+}
+
+.footer-bottom {
+  /* position: sticky; */
+  left: 0;
+  bottom: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F7971E;
+  padding: 10px 0;
+}
+
+.footer-bottom p {
+  margin: 0;
+  text-align: center;
+}

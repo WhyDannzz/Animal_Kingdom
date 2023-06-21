@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Halaman Komentar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .table-container {
+        max-width: 100%;
+        overflow-x: auto;
+        margin-top: 50px;
+    }
+
+    .table-container table {
+        width: 100%;
+        white-space: nowrap;
+    }
+
+    .table-container th,
+    .table-container td {
+        text-align: center;
+        vertical-align: top;
+        word-wrap: break-word;
+    }
+
+    .table-container .pesan {
+        white-space: normal;
+        text-align: justify;
+        word-wrap: break-word;
+    }
+
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .action-buttons button {
+        width: 100px;
+    }
+
+    .action-buttons button+button {
+        margin-left: 10px;
+    }
+
+    .navbar-brand img {
+        max-width: 100px;
+        height: auto;
+        padding-left: 40px;
+    }
+
+    .brand-text {
+        color: white;
+        font-weight: bold;
+    }
+
+    .bg-teal {
+        background-color: teal;
+    }
+
+    .btn-light {
+        color: white;
+        background-color: white;
+    }
+
+    #search-input {
+        border-radius: 10px;
+        width: 30%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .offcanvas-title {
+        color: white;
+        padding: 10px;
+        font-family: sans;
+        font-weight: bold;
+    }
+
+    .offcanvas-header {
+        background-color: teal;
+    }
+
+    .offcanvas-body {
+        background-color: teal;
+    }
+
+    .btn-white {
+        background-color: white;
+    }
+
+    .nav-item a.nav-link {
+        font-family: sans;
+        font-weight: bold;
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+        padding-top: 15px;
+    }
+
+    .button {
+        background-color: #e7e7e7;
+        border: 2px solid transparent;
+        border-radius: 8px;
+        color: black;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 1rem;
+        font-family: sans-serif;
+    }
+
+
+
+    .logout-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .btn-logout {
+        background-color: #dc3545;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .btn-logout:hover {
+        background-color: #c82333;
+    }
+</style>
+
+<script>
+
+    function goToOverview() {
+        window.location.href = "/overview";
+    }
+
+    function goToPost() {
+        window.location.href = "/post";
+    }
+
+    function goToRequest() {
+        window.location.href = "/Request";
+    }
+
+    function goToComment_admin() {
+        window.location.href = "/Comment_admin";
+    }
+
+    function goToLogout() {
+        window.location.href = "/logout";
+    }
+
+</script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light bg-teal fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img src="{{ url_for('static', filename='Logo/Logo White.png') }}" alt="Logo White.png">
+                <span class="brand-text">Animal Kingdom</span>
+            </a>
+
+            <!-- <input id="search-input" type="text" placeholder="Search" onkeyup="searchInTable()" /> -->
+
+            <button class="navbar-toggler btn-light" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h2 class="offcanvas-title" id="offcanvasNavbarLabel">Admin Page:</h2>
+                    <button type="button" class="btn-close text-reset btn-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close">
+                    </button>
+                </div>
+
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#" onclick="goToOverview()"
+                                style="color: white;">Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="goToPost()" style="color: white;">Post</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="goToRequest()" style="color: white;">Request</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="goToComment_admin()" style="color: white;">Comment</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#" onclick="goToLogout()" style="color: black;">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="logout-container">
+        <p>Anda ingin Logout?</p>
+
+        <a href="/logout" class="btn btn-logout">Logout</a>
+    </div>
+
+
+</body>
+
+</html>

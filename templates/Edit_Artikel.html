@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.all.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.min.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8.2.0/dist/polyfill.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="../static/style.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Edit Artikel</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px;
+      overflow-y: scroll;
+      width: 100%;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f5f5f5;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .container h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .container form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container form .form-label {
+      margin-bottom: 5px;
+    }
+
+    .container form .form-control {
+      margin-bottom: 15px;
+    }
+
+    .container form button {
+      align-self: center;
+      margin-right: 10px;
+
+    }
+
+    .container form .btn-clear {
+      background-color: #dc3545;
+      border-color: #dc3545;
+    }
+
+    .container form .btn-clear:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
+
+    a.button-small {
+      margin-right: 20px;
+      margin-bottom: 25px;
+    }
+  </style>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('simpanPerubahan').addEventListener('click', function (event) {
+        event.preventDefault(); // Mencegah aksi default tombol submit
+
+        tampilkanKonfirmasi();
+      });
+
+      function tampilkanKonfirmasi() {
+        Swal.fire({
+          title: 'Konfirmasi',
+          text: 'Apakah Anda yakin ingin menyimpan perubahan?',
+          icon: 'question',
+          showCancelButton: true,
+          confirmButtonText: 'Ya',
+          cancelButtonText: 'Tidak'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            simpanPerubahan();
+          }
+        });
+      }
+
+      function simpanPerubahan() {
+        Swal.fire({
+          title: 'Sukses',
+          text: 'Data berhasil diperbarui!',
+          icon: 'success'
+        }).then((result) => {
+          // Lanjutkan dengan submit form jika diinginkan
+          if (result.isConfirmed) {
+            document.querySelector('form').submit();
+          }
+        });
+      }
+    });
+  </script>
+
+
+</head>
+
+<body>
+  <div class="container">
+    <form action="/update/{{ article['_id'] }}" method="POST" enctype="multipart/form-data">
+      <h1 class="mb-4">Edit Artikel:</h1>
+
+      <div class="form-group">
+        <label for="Nama_Hewan">Nama Hewan:</label>
+        <input type="text" class="form-control" id="Nama_Hewan" name="Nama_Hewan" value="{{ article['Nama_Hewan'] }}">
+      </div>
+
+
+      <div class="form-group">
+        <label for="image1">Gambar 1:</label>
+        <div>
+          <img src="{{ url_for('static', filename=article.image1) }}" alt="Gambar 1" width="100">
+        </div>
+        <input type="file" class="form-control" id="image1" name="image1">
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="sumberfoto1">Sumber Foto 1:</label>
+        <input type="text" class="form-control" id="sumberfoto1" name="sumberfoto1"
+          value="{{ article['sumberfoto1'] }}">
+      </div>
+
+      <div class="form-group">
+        <label for="Kerajaan">Kerajaan:</label>
+        <input type="text" class="form-control" id="Kerajaan" name="Kerajaan" value="{{ article['Kerajaan'] }}">
+      </div>
+
+      <div class="form-group">
+        <label for="Filum">Filum:</label>
+        <input type="text" class="form-control" id="Filum" name="Filum" value="{{ article['Filum'] }}">
+      </div>
+
+      <div class="form-group">
+        <label for="kelas">Kelas:</label>
+        <input type="text" class="form-control" id="kelas" name="kelas" value="{{ article['kelas'] }}">
+      </div>
+
+      <div class="form-group">
+        <label for="Ordo">Ordo:</label>
+        <input type="text" class="form-control" id="Ordo" name="Ordo" value="{{ article['Ordo'] }}">
+      </div>
+
+      <div class="form-group">
+        <label for="famili">Famili:</label>
+        <input type="text" class="form-control" id="famili" name="famili" value="{{ article['famili'] }}">
+      </div>
+
+      <div class="form-group">
+        <label for="Genus">Genus:</label>
+        <input type="text" class="form-control" id="Genus" name="Genus" value="{{ article['Genus'] }}">
+      </div>
+
+      <div class="form-group">
+        <label for="Spesies">Spesies:</label>
+        <input type="text" class="form-control" id="Spesies" name="Spesies" value="{{ article['Spesies'] }}">
+      </div>
+
+
+      <div class="form-group">
+        <label for="Deskripsi_Fisik">Deskripsi Fisik:</label>
+        <textarea class="form-control" id="Deskripsi_Fisik" name="Deskripsi_Fisik"
+          rows="5">{{ article['Deskripsi_Fisik'] }}"</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="Habitat">Habitat:</label>
+        <textarea class="form-control" id="Habitat" name="Habitat" rows="5">{{ article['Habitat'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="Distribusi_Geografis">Distribusi Geografis:</label>
+        <textarea class="form-control" id="Distribusi_Geografis" name="Distribusi_Geografis"
+          rows="5">{{ article['Distribusi_Geografis'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="image2">Gambar 2:</label>
+        <input type="file" class="form-control" id="image2" name="image2" value="{{ article['image2'] }}">
+      </div>
+
+      <div class="form-group">
+        <label for="sumberfoto2">Sumber Foto 2:</label>
+        <input type="text" class="form-control" id="sumberfoto2" name="sumberfoto2"
+          value="{{ article['sumberfoto2'] }}">
+      </div>
+
+      <div class="form-group">
+        <label for="Makanan">Makanan dan Pola Makan:</label>
+        <textarea class="form-control" id="Makanan" name="Makanan" rows="5">{{ article['Makanan'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="Kebiasaan_dan_Perilaku">Kebiasaan dan Perilaku:</label>
+        <textarea class="form-control" id="Kebiasaan_dan_Perilaku" name="Kebiasaan_dan_Perilaku"
+          rows="5">{{ article['Kebiasaan_dan_Perilaku'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="Reproduksi">Reproduksi:</label>
+        <textarea class="form-control" id="Reproduksi" name="Reproduksi" rows="5">{{ article['Reproduksi'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="image3">Gambar 3:</label>
+        <input type="file" class="form-control" id="image3" name="image3" value="{{ article['image3'] }}">
+      </div>
+
+      <div class="form-group">
+        <label for="sumberfoto3">Sumber Foto 3:</label>
+        <input type="text" class="form-control" id="sumberfoto3" name="sumberfoto3"
+          value="{{ article['sumberfoto3'] }}">
+      </div>
+
+      <div class="form-group">
+        <label for="Karakteristik_Unik">Karakteristik Unik:</label>
+        <textarea class="form-control" id="Karakteristik_Unik" name="Karakteristik_Unik"
+          rows="5">{{ article['Karakteristik_Unik'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="Konservasi">Konservasi:</label>
+        <textarea class="form-control" id="Konservasi" name="Konservasi" rows="5">{{ article['Konservasi'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="Fakta_Menarik">Fakta Menarik:</label>
+        <textarea class="form-control" id="Fakta_Menarik" name="Fakta_Menarik"
+          rows="5">{{ article['Fakta_Menarik'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="HeaderReferensi">Header Referensi:</label>
+        <textarea class="form-control" id="HeaderReferensi" name="HeaderReferensi" rows="5"
+          placeholder="Wajid diisi dengan kata (Referensi)">{{ article['HeaderReferensi'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="Referensi_1">Referensi 1:</label>
+        <textarea class="form-control" id="Referensi_1" name="Referensi_1"
+          rows="5">{{ article['Referensi_1'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="Referensi_2">Referensi 2:</label>
+        <textarea class="form-control" id="Referensi_2" name="Referensi_2"
+          rows="5">{{ article['Referensi_2'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="Referensi_3">Referensi 3:</label>
+        <textarea class="form-control" id="Referensi_3" name="Referensi_3"
+          rows="5">{{ article['Referensi_3'] }}</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="Referensi_4">Referensi 4:</label>
+        <textarea class="form-control" id="Referensi_4" name="Referensi_4"
+          rows="5">{{ article['Referensi_4'] }}</textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" id="simpanPerubahan">Simpan Perubahan</button>
+
+    </form>
+
+  </div>
+  <a href="/post" class="button button-small back-button">Back</a>
+</body>
+
+</html>
